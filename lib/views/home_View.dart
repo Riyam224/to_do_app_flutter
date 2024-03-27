@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:todo_app/views/widgets/counter_tasks.dart';
 import 'package:todo_app/views/widgets/todo_card_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -39,11 +40,11 @@ class _HomeViewState extends State<HomeView> {
 
   int calculateCompletedTasks() {
     int completedTask = 0;
-    allTasks.forEach((item) {
+    for (var item in allTasks) {
       if (item.status) {
         completedTask++;
       }
-    });
+    }
     return completedTask;
   }
 
@@ -124,15 +125,9 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // todo counter
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Text(
-                  '${calculateCompletedTasks()}/${allTasks.length}',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
+              CounterTasks(
+                allTodos: allTasks.length,
+                completedTasks: calculateCompletedTasks(),
               ),
               // todo remove [] from the list below by ...
 
