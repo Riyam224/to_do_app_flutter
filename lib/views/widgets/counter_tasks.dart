@@ -15,7 +15,9 @@ class CounterTasks extends StatelessWidget {
       child: Text(
         '$completedTasks/$allTodos',
         style: TextStyle(
-            fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 30,
+            color: completedTasks == allTodos ? Colors.green : Colors.white,
+            fontWeight: FontWeight.bold),
       ),
     );
   }
