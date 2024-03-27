@@ -48,46 +48,48 @@ class _HomeViewState extends State<HomeView> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // todo
-            showModalBottomSheet(
+            showDialog(
               context: context,
               builder: (BuildContext context) {
-                return Container(
-                    padding: EdgeInsets.all(10),
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Colors.amber[200],
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextField(
-                          // todo
-                          controller: myController,
-                          maxLength: 30,
-                          decoration: InputDecoration(
-                            hintText: 'Add new Task',
-                          ),
-                        ),
-                        SizedBox(
-                          height: 22,
-                        ),
-                        TextButton(
-                          onPressed: () {
+                return Dialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(11)),
+                  child: Container(
+                      padding: EdgeInsets.all(10),
+                      height: 200,
+                      color: Colors.amber[200],
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextField(
                             // todo
-                            addNewTask();
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            'Add',
-                            style: TextStyle(
-                              fontSize: 20,
+                            controller: myController,
+                            maxLength: 30,
+                            decoration: InputDecoration(
+                              hintText: 'Add new Task',
                             ),
                           ),
-                        ),
-                      ],
-                    ));
+                          SizedBox(
+                            height: 22,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // todo
+                              addNewTask();
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              'Add',
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                );
               },
               // todo
-              isScrollControlled: true,
             );
           },
           child: Icon(
