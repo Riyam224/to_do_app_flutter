@@ -3,9 +3,14 @@
 import 'package:flutter/material.dart';
 
 class TodoCardWidget extends StatelessWidget {
-  const TodoCardWidget({
+  TodoCardWidget({
     super.key,
+    required this.todoTitle,
+    required this.doneOrNot,
   });
+  // todo one
+  final String todoTitle;
+  final bool doneOrNot;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,15 @@ class TodoCardWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('first note ', style: TextStyle(color: Colors.white)),
+            // todo
+            Text(todoTitle, style: TextStyle(color: Colors.white)),
+            // todo
             Icon(
-              Icons.check,
-              color: Colors.white,
+              doneOrNot ? Icons.check : Icons.close,
+              // size and color
+
+              size: 28,
+              color: doneOrNot ? Colors.green[400] : Colors.red,
             ),
           ],
         ),

@@ -5,9 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:todo_app/views/widgets/todo_card_widget.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+// todo
+class Task {
+  String title;
+  bool status;
+
+  // todo constructor
+  Task({required this.title, required this.status});
+}
+
+// todo
+List allTasks = [
+  Task(title: 'sleep good', status: false),
+  Task(title: 'drink water', status: true),
+  Task(title: 'drawing', status: false),
+  Task(title: 'drink coffee', status: true)
+];
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,12 +48,12 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TodoCardWidget(),
-              TodoCardWidget(),
-              TodoCardWidget(),
-              TodoCardWidget(),
-              TodoCardWidget(),
-              // todo
+              // todo remove [] from the list below by ...
+
+              ...allTasks
+                  .map((item) => TodoCardWidget(
+                      todoTitle: item.title, doneOrNot: item.status))
+                  .toList()
             ],
           ),
         ));
