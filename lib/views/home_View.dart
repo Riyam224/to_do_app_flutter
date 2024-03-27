@@ -21,15 +21,26 @@ class Task {
   Task({required this.title, required this.status});
 }
 
-// todo
-List allTasks = [
-  Task(title: 'sleep good', status: false),
-  Task(title: 'drink water', status: true),
-  Task(title: 'drawing', status: false),
-  Task(title: 'drink coffee', status: true)
-];
-
 class _HomeViewState extends State<HomeView> {
+  // todo
+  // todo
+  List allTasks = [
+    Task(title: 'sleep good', status: false),
+    Task(title: 'drink water', status: true),
+    Task(title: 'drawing', status: false),
+    Task(title: 'drink coffee', status: true)
+  ];
+
+  addNewTask() {
+    setState(() {
+      allTasks.add(Task(title: myController.text, status: false));
+    });
+  }
+
+  // todo
+  final myController = TextEditingController();
+
+  // final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +60,8 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextField(
+                          // todo
+                          controller: myController,
                           maxLength: 30,
                           decoration: InputDecoration(
                             hintText: 'Add new Task',
@@ -59,6 +72,8 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         TextButton(
                           onPressed: () {
+                            // todo
+                            addNewTask();
                             Navigator.pop(context);
                           },
                           child: Text(
