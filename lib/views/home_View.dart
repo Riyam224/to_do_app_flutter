@@ -33,6 +33,54 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // todo
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // todo
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Colors.amber[200],
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextField(
+                          maxLength: 30,
+                          decoration: InputDecoration(
+                            hintText: 'Add new Task',
+                          ),
+                        ),
+                        SizedBox(
+                          height: 22,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'Add',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ));
+              },
+              // todo
+              isScrollControlled: true,
+            );
+          },
+          child: Icon(
+            Icons.add,
+          ),
+          backgroundColor: Colors.redAccent,
+        ),
+        //
         backgroundColor: Color.fromARGB(255, 8, 41, 73),
         appBar: AppBar(
           title: const Text(
