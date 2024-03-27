@@ -27,7 +27,7 @@ class _HomeViewState extends State<HomeView> {
   List allTasks = [
     Task(title: 'sleep good', status: false),
     Task(title: 'drink water', status: true),
-    Task(title: 'drawing', status: false),
+    Task(title: 'drawing', status: true),
     Task(title: 'drink coffee', status: true)
   ];
 
@@ -35,6 +35,16 @@ class _HomeViewState extends State<HomeView> {
     setState(() {
       allTasks.add(Task(title: myController.text, status: false));
     });
+  }
+
+  int calculateCompletedTasks() {
+    int completedTask = 0;
+    allTasks.forEach((item) {
+      if (item.status) {
+        completedTask++;
+      }
+    });
+    return completedTask;
   }
 
   // todo
@@ -113,6 +123,17 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // todo counter
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Text(
+                  '${calculateCompletedTasks()}/${allTasks.length}',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
               // todo remove [] from the list below by ...
 
               ...allTasks
