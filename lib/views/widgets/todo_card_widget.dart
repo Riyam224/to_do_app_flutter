@@ -7,21 +7,21 @@ class TodoCardWidget extends StatelessWidget {
     super.key,
     required this.todoTitle,
     required this.doneOrNot,
-    required this.myFun,
-    required this.iii,
+    required this.changeStatus,
+    required this.index,
   });
   // todo one
   final String todoTitle;
   final bool doneOrNot;
-  final Function myFun;
-  final int iii;
+  final Function changeStatus;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // todo
-        myFun(iii);
+        changeStatus(index);
       },
       child: FractionallySizedBox(
         widthFactor: 0.9,

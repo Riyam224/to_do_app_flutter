@@ -146,8 +146,8 @@ class _HomeViewState extends State<HomeView> {
                   return TodoCardWidget(
                     todoTitle: allTasks[index].title,
                     doneOrNot: allTasks[index].status,
-                    myFun: changeStatus,
-                    iii: index,
+                    changeStatus: changeStatus,
+                    index: index,
                   );
                 },
               ),
