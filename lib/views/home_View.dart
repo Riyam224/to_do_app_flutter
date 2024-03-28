@@ -24,13 +24,27 @@ class Task {
 
 class _HomeViewState extends State<HomeView> {
   // todo
-  // todo
   List allTasks = [
     Task(title: 'sleep good', status: true),
     Task(title: 'drink water', status: true),
     Task(title: 'drawing', status: true),
     Task(title: 'drink coffee', status: true)
   ];
+
+// todo delete
+
+  deleteAllTasks() {
+    setState(() {
+      allTasks.removeRange(0, allTasks.length);
+    });
+  }
+
+// todo
+  delete(int clickedTask) {
+    setState(() {
+      allTasks.remove(allTasks[clickedTask]);
+    });
+  }
 
   // todo
   changeStatus(int taskIndex) {
@@ -118,6 +132,18 @@ class _HomeViewState extends State<HomeView> {
       //
       backgroundColor: Color.fromARGB(255, 8, 41, 73),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                // todo
+                deleteAllTasks();
+              },
+              icon: Icon(
+                Icons.delete_forever,
+                size: 40,
+                color: Colors.white,
+              ))
+        ],
         title: const Text(
           'TO DO APP',
           style: TextStyle(color: Colors.white),
@@ -148,6 +174,7 @@ class _HomeViewState extends State<HomeView> {
                     doneOrNot: allTasks[index].status,
                     changeStatus: changeStatus,
                     index: index,
+                    delete: delete,
                   );
                 },
               ),

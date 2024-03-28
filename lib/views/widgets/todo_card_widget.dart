@@ -3,19 +3,19 @@
 import 'package:flutter/material.dart';
 
 class TodoCardWidget extends StatelessWidget {
-  TodoCardWidget({
-    super.key,
-    required this.todoTitle,
-    required this.doneOrNot,
-    required this.changeStatus,
-    required this.index,
-  });
+  TodoCardWidget(
+      {super.key,
+      required this.todoTitle,
+      required this.doneOrNot,
+      required this.changeStatus,
+      required this.index,
+      required this.delete});
   // todo one
   final String todoTitle;
   final bool doneOrNot;
   final Function changeStatus;
   final int index;
-
+  final Function delete;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,24 +23,49 @@ class TodoCardWidget extends StatelessWidget {
         // todo
         changeStatus(index);
       },
+      // todo
       child: FractionallySizedBox(
         widthFactor: 0.9,
         child: Container(
           height: 50,
           margin: EdgeInsets.only(top: 10, bottom: 10),
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: EdgeInsets.only(left: 15, right: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // todo
-              Text(todoTitle, style: TextStyle(color: Colors.white)),
+              Text(todoTitle,
+                  style: TextStyle(
+                    // todo
+                    color: doneOrNot ? Colors.black : Colors.white,
+                    decoration: doneOrNot
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  )),
               // todo
-              Icon(
-                doneOrNot ? Icons.check : Icons.close,
-                // size and color
+              Row(
+                children: [
+                  Icon(
+                    doneOrNot ? Icons.check : Icons.close,
+                    // size and color
 
-                size: 28,
-                color: doneOrNot ? Colors.green[400] : Colors.red,
+                    size: 28,
+                    color: doneOrNot ? Colors.green[400] : Colors.red,
+                  ),
+                  SizedBox(width: 12),
+                  IconButton(
+                    onPressed: () {
+                      // todo
+
+                      delete(index);
+                    },
+                    icon: Icon(
+                      Icons.delete,
+                      size: 26,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
