@@ -26,11 +26,18 @@ class _HomeViewState extends State<HomeView> {
   // todo
   // todo
   List allTasks = [
-    Task(title: 'sleep good', status: false),
+    Task(title: 'sleep good', status: true),
     Task(title: 'drink water', status: true),
     Task(title: 'drawing', status: true),
     Task(title: 'drink coffee', status: true)
   ];
+
+  // todo
+  changeStatus(int taskIndex) {
+    setState(() {
+      allTasks[taskIndex].status = !allTasks[taskIndex].status;
+    });
+  }
 
   addNewTask() {
     setState(() {
@@ -139,6 +146,8 @@ class _HomeViewState extends State<HomeView> {
                   return TodoCardWidget(
                     todoTitle: allTasks[index].title,
                     doneOrNot: allTasks[index].status,
+                    myFun: changeStatus,
+                    iii: index,
                   );
                 },
               ),
